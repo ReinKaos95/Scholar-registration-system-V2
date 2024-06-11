@@ -6,7 +6,7 @@ This porject was made with the following tools
 - [PHP](https://www.php.net)
 - [Bootstrap](https://getbootstrap.com)
 - [Xampp & MySql](https://www.apachefriends.org/es/index.html)
-- [Javascript] (https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+- [Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 
 ### Caracteristicas
 
