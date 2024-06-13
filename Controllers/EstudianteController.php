@@ -1,7 +1,7 @@
 <?php 
-/**
- * 
- */
+
+namespace Controllers;
+
 class EstudianteController
 {
 	public function index()

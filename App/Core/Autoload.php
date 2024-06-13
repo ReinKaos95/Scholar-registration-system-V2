@@ -1,7 +1,8 @@
 <?php 
 
+
 use Controllers\MainController;
-use Controllers\AdminController;
+
 
 spl_autoload_register(function ($className)
 {
@@ -10,11 +11,10 @@ spl_autoload_register(function ($className)
 		}
 		//var_dump($className);
 });
+
 $main=new MainController;
 $main->Index();
 
-$admin=new AdminController;
-$admin->index();
 
 //$obj2 = new MyClass2(); 
 
