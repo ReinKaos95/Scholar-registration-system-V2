@@ -9,6 +9,8 @@ class MainController
 	{
 		require 'Views/index.php';
 	}
+
+	
 }
 
  ?>

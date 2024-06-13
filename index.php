@@ -1,4 +1,4 @@
-<?php require 'Controllers/Main.php';
-$conn = new MainController;
+<?php require 'Controllers/Estudiante.php';
+$conn = new EstudianteController;
 $conn->Index();
  ?>
