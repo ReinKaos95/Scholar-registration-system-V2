@@ -1,4 +1,6 @@
-<?php require 'Controllers/Estudiante.php';
-$conn = new EstudianteController;
-$conn->Index();
+<?php require 'App/Core/Autoload.php';
+/*$conn = new AuthController;
+$conn->Index();*/
+
+
  ?>
