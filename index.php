@@ -4,6 +4,7 @@
 
 #carga del autoload
 require 'App/Core/Autoload.php';
+
 /*$conn = new AuthController;
 $conn->Index();*/
 

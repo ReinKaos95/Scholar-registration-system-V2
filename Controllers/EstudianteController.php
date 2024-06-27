@@ -4,7 +4,7 @@ namespace Controllers;
 
 class EstudianteController
 {
-	public function index()
+	public function Index()
 	{
 		require 'Views/Estudiante/index.php';
 	}

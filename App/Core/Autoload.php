@@ -2,6 +2,7 @@
 
 
 use Controllers\MainController;
+use Controllers\EstudianteController;
 
 
 spl_autoload_register(function ($className)
@@ -15,6 +16,9 @@ spl_autoload_register(function ($className)
 $main=new MainController;
 $main->Index();
 
+
+$estudiante=new EstudianteController;
+$estudiante->Index();
 
 //$obj2 = new MyClass2(); 
 
