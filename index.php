@@ -1,12 +1,8 @@
 <?php 
 
-//Archivo principal donde se cargaran las vistas y librerias correspondientes
+include 'Controllers/MainController.php';
 
-#carga del autoload
-require 'App/Core/Autoload.php';
-
-/*$conn = new AuthController;
-$conn->Index();*/
-
+$conn = new MainController();
+$conn->index();
 
  ?>

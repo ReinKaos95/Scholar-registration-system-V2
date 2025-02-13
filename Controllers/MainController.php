@@ -1,17 +1,16 @@
 <?php 
 
-
-namespace Controllers;
-
-
+/**
+ * 
+ */
 class MainController
 {
-	public function Index()
-	{
-		require 'Views/index.php';
-	}
-
 	
+	public function index()
+	{
+		require_once 'Views/index.php';
+	}
 }
+
 
  ?>
