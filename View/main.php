@@ -1,6 +1,12 @@
 <?php
 
    session_start();
+   if (isset($_SESSION['variable'])) {
+   	// code...
+   }
+   header('Location: ../index.php');
+  exit();
+   
 
 ?>
 

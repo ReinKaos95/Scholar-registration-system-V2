@@ -1,4 +1,6 @@
-<?php include 'def.php'; ?>
+<?php include 'def.php'; 
+
+?>
 
 <!DOCTYPE html>
 <html>
@@ -41,21 +43,26 @@
 
 
 <?php 
-
 include 'db.php';
 
 if (isset($_POST['submit'])) {
 	$usuario = $_POST['usuario'];
-	$email = $_POST['email'];
+	$email = mysqli_real_escape_string($conn, $_POST['email']);
 	$password = base64_encode($_POST['password']);
 
-
-	$sql = "INSERT INTO usuarios (username, email, password) VALUES ('$usuario', '$email', '$password')";
-	if (mysqli_query($conn, $sql)) {
-		echo "<script>window.confirm('Registro exitoso');</script>";
-	}else{
-    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-  }
+	$validar = "SELECT * FROM usuarios WHERE email = '$email'";
+	$consulta = mysqli_query($conn, $validar);
+	$rowCount = mysqli_num_rows($consulta);
+	if ($rowCount > 0) {
+		echo "<script>window.confirm('Ese correo ya existe');</script>";
+	} else {
+		$sql = "INSERT INTO usuarios (username, email, password) VALUES ('$usuario', '$email', '$password')";
+		if (mysqli_query($conn, $sql)) {
+			echo "<script>window.confirm('Registro exitoso');</script>";
+		}else{
+			echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+		}
+	}
 }
 
  ?>

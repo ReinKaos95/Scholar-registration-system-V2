@@ -38,24 +38,13 @@
 <?php
 include 'db.php';
 session_start();
-$error = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	$email =  $_POST['email'];
 	$password = base64_encode($_POST['password']);
 
-	$sql = "SELECT * FROM usuarios WHERE email = '$email' AND password = '$password'";
-	$result = mysqli_query($conn, $sql);
-	$row = mysqli_num_rows($result);
-	$count = mysqli_num_rows($result);
-
-	if ($count == 1) {
-		
-		header("location: View/main.php");
-	}else {
-         $error = "Your Login Name or Password is invalid";
-      }
-
+	echo $email;
+	echo $password;
 	}
 
 ?>
