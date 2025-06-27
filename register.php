@@ -1,63 +1,56 @@
-<?php include 'def.php'; 
+<link rel="stylesheet" type="text/css" href="app.css">
 
-?>
-
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Registrate - <?php echo Title; ?></title>
-		<link rel="stylesheet" type="text/css" href="CSS/app.css">
-</head>
-<body>
 	<div id="center">
 		<div id="form">
-		<p>placeholder para imagen</p>
-		<form method="post">
-			<br>
-			<label>User</label>
-			<br>
-			<input type="text" name="usuario">
-			<br>
-			<br>
-			<label>Correo</label>
-			<br>
-			<input type="email" name="email">
-			<br>
-			<br>
-			<label>Password</label>
-			<br>
-			<input type="password" name="password">
-			<br>
-			<br>
-			<input type="submit" name="submit" value="Registrar">
-			<br>
-			<br>
-			<p>Ya estas registrado? <a href="index.php">Inicia sesion</a></p>
-		</form>
+			<form method="post">
+				<label>usuario</label>
+				<br>
+				<input type="text" name="username">
+				<br>
+				<br>
+				<label>Correo</label>
+				<br>
+				<input type="email" name="email">
+				<br>
+				<br>
+				<label>Contraseña</label>
+				<br>
+				<input type="password" name="password">
+				<br>
+				<br>
+				<input type="submit" name="submit">
+				&nbsp;
+				<a href="index.php">a</a>
+			</form>
 		</div>
 	</div>
-</body>
-</html>
 
 
-<?php 
-include 'db.php';
+<?php
+include 'db.php'; 
 
 if (isset($_POST['submit'])) {
-	$usuario = $_POST['usuario'];
-	$email = mysqli_real_escape_string($conn, $_POST['email']);
-	$password = base64_encode($_POST['password']);
+	$username = $_POST['username'];
+	$email = $_POST['email'];
+	$password = $_POST['password'];
+	$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-	$validar = "SELECT * FROM usuarios WHERE email = '$email'";
-	$consulta = mysqli_query($conn, $validar);
-	$rowCount = mysqli_num_rows($consulta);
-	if ($rowCount > 0) {
+	// $stmt = $conn->prepare("SELECT * FROM usuarios WHERE email = '$email'");
+	//$stmt->execute();
+	//$stmt->fetchall();
+
+	//	Consulta para comprobar si el correo fue registrado
+	$stmt = $conn->prepare("SELECT * FROM usuarios WHERE email = :email");
+	$stmt->execute([':email' => $email]);
+	$results = $stmt->fetchAll();
+
+	// $rowcount = mysqli_num_rows($stmt);
+
+	if (!empty($results)) {
 		echo "<script>window.confirm('Ese correo ya existe');</script>";
-	} else {
-		$sql = "INSERT INTO usuarios (username, email, password) VALUES ('$usuario', '$email', '$password')";
-		if (mysqli_query($conn, $sql)) {
+	}else{
+		$stmt = $conn->prepare("INSERT INTO usuarios (username, email, password) VALUES (?, ?, ?)");
+		if ($stmt->execute([$username, $email, $hashedPassword])) {
 			echo "<script>window.confirm('Registro exitoso');</script>";
 		}else{
 			echo "Error: " . $sql . "<br>" . mysqli_error($conn);
@@ -65,4 +58,4 @@ if (isset($_POST['submit'])) {
 	}
 }
 
- ?>
+?>

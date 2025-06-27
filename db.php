@@ -6,10 +6,10 @@
 	$dbname = 'escuela';
 
 	try {
-		$conn=mysqli_connect($host, $user, $password, $dbname);
-		
-	} catch (Exception $e) {
-		echo "Failed to connect MYSQL" . $e->getMessage();
+	$conn = new PDO("mysql:host=$host;dbname=$dbname", $user, $password);
+	$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+	} catch (PDOException $e) {
+		echo "Conexion fallida: " .$e->getMessage();
 	}
 
  ?>

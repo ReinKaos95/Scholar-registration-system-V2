@@ -5,46 +5,13 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title><?php echo Title; ?></title>
-	<link rel="stylesheet" type="text/css" href="CSS/app.css">
+	<link rel="stylesheet" type="text/css" href="app.css">
+	<title> <?php echo Title; ?></title>
 </head>
 <body>
-	<div id="center">
-		<div id="form">
-		<p>placeholder para imagen</p>
-		<form action="" method="post">
-			<br>
-			<label>Email</label>
-			<br>
-			<input type="email" name="email">
-			<br>
-			<br>
-			<label>Password</label>
-			<br>
-			<input type="password" name="password">
-			<br>
-			<br>
-			<button>Iniciar sesion</button>
-			<br>
-			<br>
-			<p>No estas registrado? <a href="register.php">Registrate</a></p>
-		</form>
-		</div>
-	</div>
+   <?php if (isset($_SESSION['error'])): ?>
+        <div class="error"><?php echo $_SESSION['error']; unset($_SESSION['error']); ?></div>
+    <?php endif; ?>
+	<?php include 'login.php'; ?>
 </body>
 </html>
-
-
-<?php
-include 'db.php';
-session_start();
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-	$email =  $_POST['email'];
-	$password = base64_encode($_POST['password']);
-
-	echo $email;
-	echo $password;
-	}
-
-?>
